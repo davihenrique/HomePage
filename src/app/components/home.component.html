@@ -1,0 +1,32 @@
+<main>
+  <header class="header-flex">
+    <div class="header-left">
+      <img
+        src="/img/server-logo-dark.png"
+        alt="Server Logo"
+        style="height: 48px; margin-right: 18px"
+      />
+      <div class="header-title">
+        <h1>Serviços do Servidor</h1>
+      </div>
+    </div>
+  </header>
+
+  <section id="links-section">
+    <ul id="links-list" class="grid">
+      <ng-container *ngIf="links$ | async as links; else loadingOrError">
+        <li *ngIf="links.length === 0" class="empty">Nenhum link encontrado em data/links.json</li>
+
+        <li *ngFor="let link of links" class="card">
+          <a [href]="link.url" target="_blank" rel="noopener noreferrer" class="card-link">
+            <span class="link-title">{{ link.title }}</span>
+            <p *ngIf="link.description" class="link-desc no-select">{{ link.description }}</p>
+          </a>
+        </li>
+      </ng-container>
+      <ng-template #loadingOrError>
+        <li class="loading">Carregando...</li>
+      </ng-template>
+    </ul>
+  </section>
+</main>

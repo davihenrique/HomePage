@@ -1,0 +1,60 @@
+#links-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.card {
+  background: linear-gradient(180deg, #0f1724, rgba(12, 17, 28, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  overflow: hidden;
+}
+.card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link .link-title {
+  transition: none;
+}
+.card-link:hover .link-title {
+  color: inherit;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.75);
+}
+.no-select {
+  user-select: none;
+}
+.link-title {
+  color: #60a5fa !important;
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.02rem;
+}
+.link-title:hover,
+.card-link:hover .link-title,
+.link-title:active,
+.link-title:focus {
+  color: #60a5fa !important;
+}
+.link-desc {
+  margin: 0;
+  color: #9aa4b2;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
