@@ -3,6 +3,7 @@ export interface Link {
   title: string;
   port: string;
   description?: string;
+  https?: boolean;
 }
 
 export interface Service {

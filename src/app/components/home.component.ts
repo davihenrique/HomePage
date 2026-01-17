@@ -14,7 +14,7 @@ import { Link, Service } from '../interfaces/link.interfaces';
 })
 export class HomeComponent {
   public services$: Observable<Service[]>;
-  private baseUrl: string = `${window.location.protocol}//${window.location.hostname}`;
+  private baseUrl: string = window.location.hostname;
 
   constructor(public linksService: LinksService) {
     this.services$ = this.linksService.getLinks().pipe(
@@ -22,7 +22,7 @@ export class HomeComponent {
         links.map((link) => ({
           id: link.id,
           title: link.title,
-          link: `${this.baseUrl}:${link.port}`,
+          link: `${link.https ? 'https://' : 'http://'}${this.baseUrl}:${link.port}`,
           description: link.description || '',
         }))
       )

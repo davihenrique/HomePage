@@ -15,6 +15,7 @@
     "id": "3",
     "title": "Home Assistant",
     "port": "8123",
-    "description": "Painel Home Assistant"
+    "description": "Painel Home Assistant",
+    "https": true
   }
 ]
