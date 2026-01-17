@@ -2,19 +2,19 @@
   {
     "id": "1",
     "title": "SSH (Servidor)",
-    "url": "ssh://seu-ip-ou-hostname:22",
+    "port": "22",
     "description": "Acesso SSH ao servidor"
   },
   {
     "id": "2",
     "title": "Nextcloud",
-    "url": "http://seu-ip-ou-hostname:8080",
+    "port": "8080",
     "description": "Painel Nextcloud"
   },
   {
     "id": "3",
     "title": "Home Assistant",
-    "url": "http://seu-ip-ou-hostname:8123",
+    "port": "8123",
     "description": "Painel Home Assistant"
   }
 ]

@@ -14,13 +14,11 @@
 
   <section id="links-section">
     <ul id="links-list" class="grid">
-      <ng-container *ngIf="links$ | async as links; else loadingOrError">
-        <li *ngIf="links.length === 0" class="empty">Nenhum link encontrado em data/links.json</li>
-
-        <li *ngFor="let link of links" class="card">
-          <a [href]="link.url" target="_blank" rel="noopener noreferrer" class="card-link">
-            <span class="link-title">{{ link.title }}</span>
-            <p *ngIf="link.description" class="link-desc no-select">{{ link.description }}</p>
+      <ng-container *ngIf="services$ | async as services; else loadingOrError">
+        <li *ngFor="let service of services" class="card">
+          <a [href]="service.link" target="_blank" rel="noopener noreferrer" class="card-link">
+            <span class="link-title">{{ service.title }}</span>
+            <p *ngIf="service.description" class="link-desc no-select">{{ service.description }}</p>
           </a>
         </li>
       </ng-container>

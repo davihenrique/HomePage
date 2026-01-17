@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Link {
-  id: string;
-  title: string;
-  url: string;
-  description?: string;
-}
+import { Link } from '../interfaces/link.interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class LinksService {

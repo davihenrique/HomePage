@@ -1,7 +1,9 @@
-import { Component, signal, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LinksService, Link } from '../services/links.service';
+import { LinksService } from '../services/links.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Link, Service } from '../interfaces/link.interfaces';
 
 @Component({
   selector: 'app-home',
@@ -10,42 +12,20 @@ import { LinksService, Link } from '../services/links.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  links$;
-  utcDateTime = signal(this.getDateTimeUTC());
-  brDateTime = signal(this.getDateTimeBR());
-  private timer: any;
+export class HomeComponent {
+  public services$: Observable<Service[]>;
+  private baseUrl: string = `${window.location.protocol}//${window.location.hostname}`;
 
   constructor(public linksService: LinksService) {
-    this.links$ = this.linksService.getLinks();
-  }
-
-  ngOnInit() {
-    this.timer = setInterval(() => {
-      this.utcDateTime.set(this.getDateTimeUTC());
-      this.brDateTime.set(this.getDateTimeBR());
-    }, 1000);
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.timer);
-  }
-
-  private getDateTimeUTC() {
-    const now = new Date();
-    const pad = (n: number) => n.toString().padStart(2, '0');
-    return {
-      date: `${pad(now.getUTCDate())}/${pad(now.getUTCMonth() + 1)}/${now.getUTCFullYear()}`,
-      time: `${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}:${pad(now.getUTCSeconds())}`,
-    };
-  }
-
-  private getDateTimeBR() {
-    const now = new Date();
-    const pad = (n: number) => n.toString().padStart(2, '0');
-    return {
-      date: `${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`,
-      time: `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`,
-    };
+    this.services$ = this.linksService.getLinks().pipe(
+      map((links: Link[]) =>
+        links.map((link) => ({
+          id: link.id,
+          title: link.title,
+          link: `${this.baseUrl}:${link.port}`,
+          description: link.description || '',
+        }))
+      )
+    );
   }
 }
