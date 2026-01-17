@@ -6,7 +6,7 @@ services:
       - "80:80"
     volumes:
       - .:/app:Z
-      # - ../data:/usr/share/nginx/html/data/:Z  # Expose data directory if needed
+      - ../data:/usr/share/nginx/html/data/:Z  # Expose data directory if needed
       - node_modules:/app/node_modules:Z
     environment:
       - NODE_ENV=development
