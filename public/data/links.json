@@ -1,9 +1,9 @@
 [
   {
     "id": "1",
-    "title": "SSH (Servidor)",
-    "port": "22",
-    "description": "Acesso SSH ao servidor"
+    "title": "Cockpit",
+    "port": "9090",
+    "description": "Acesso ao Cockpit"
   },
   {
     "id": "2",
